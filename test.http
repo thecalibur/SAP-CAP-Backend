@@ -1,0 +1,124 @@
+@baseurl = http://localhost:4004
+
+### READ Data
+GET {{baseurl}}/service/BillService/employees
+
+### CREATE Data
+POST {{baseurl}}/service/BillService/createData
+
+
+### UPDATE Data
+POST {{baseurl}}/service/BillService/updateData
+Content-Type: application/json
+
+{
+    "EmpID": "550e8400-e29b-41d4-a716-446655440000"
+}
+
+
+### DELETE Data
+POST {{baseurl}}/service/BillService/deleteData
+Content-Type: application/json
+
+{
+    "EmpID": "550e8400-e29b-41d4-a716-446655440000"
+}
+
+### READ Data
+GET {{baseurl}}/service/BillService/getData
+
+
+### CREATE Candidate
+POST {{baseurl}}/service/BillService/createCandidate
+
+
+### GET Employee Data from EmployeeService
+GET {{baseurl}}/service/EmployeeService/employees2
+
+### GET Departments Data from EmployeeService
+GET {{baseurl}}/service/EmployeeService/departments
+
+### GET Employee Data from AdminService
+GET {{baseurl}}/service/AdminService/employees2
+
+### GET Departments Data from AdminService
+GET {{baseurl}}/service/AdminService/departments
+
+
+
+###------------AUTHORIZATION TESTING------------###
+
+### Employee: READ Data
+GET {{baseurl}}/service/AdminService/employees2
+Authorization: Basic Bill:
+
+### Employee: UPDATE Data
+PATCH {{baseurl}}/service/AdminService/employees2(email='hungtri1906@gmail.com')
+Content-Type: application/json
+Authorization: Basic Bill:
+
+{
+    "firstName": "Bill"
+}
+
+### Department Lead: READ Data
+GET {{baseurl}}/service/AdminService/employees2
+Authorization: Basic BillNguyen:
+
+### Department Lead: READ Data
+GET {{baseurl}}/service/AdminService/departments
+Authorization: Basic BillNguyen:
+
+### Department Lead: CREATE Data
+POST {{baseurl}}/service/AdminService/employees2
+Content-Type: application/json
+Authorization: Basic BillNguyen:
+
+{
+    "email": "hungnguyen1906@gmail.com",
+    "firstName": "Bill",
+    "lastName": "Nguyen",
+    "hireDate": "2023-01-15",
+    "companyCode": "0001",
+    "departmentName": "Human Resources"
+}
+
+### Department Lead: UPDATE Data
+PATCH {{baseurl}}/service/AdminService/employees2(email='hungtri1906@gmail.com')
+Content-Type: application/json
+Authorization: Basic BillNguyen:
+
+{
+    "firstName": "Hung"
+}
+
+### Admin: READ Data
+GET {{baseurl}}/service/AdminService/employees2
+Authorization: Basic QuocHung:
+
+### Admin: CREATE Data
+POST {{baseurl}}/service/AdminService/employees2
+Content-Type: application/json
+Authorization: Basic QuocHung:
+
+{
+    "email": "hungnguyen1906@gmail.com",
+    "firstName": "Bill",
+    "lastName": "Nguyen",
+    "hireDate": "2023-01-15",
+    "companyCode": "0001",
+    "departmentName": "Human Resources"
+}
+
+### Admin: DELETE Data
+DELETE {{baseurl}}/service/AdminService/employees2(email='hungnguyen1906@gmail.com')
+Authorization: Basic QuocHung:
+
+### Admin: UPDATE Data
+PATCH {{baseurl}}/service/AdminService/employees2(email='hungtri1906@gmail.com')
+Content-Type: application/json
+Authorization: Basic QuocHung:
+
+{
+    "firstName": "Hung"
+}

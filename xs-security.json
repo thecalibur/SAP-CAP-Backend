@@ -1,0 +1,74 @@
+{
+  "xsappname": "exercise-hybrid",
+  "tenant-mode": "dedicated",
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.Employee",
+      "description": "Employee"
+    },
+    {
+      "name": "$XSAPPNAME.DepartmentLead",
+      "description": "Department Lead"
+    },
+    {
+      "name": "$XSAPPNAME.Admin",
+      "description": "Admin"
+    }
+  ],
+  "attributes": [
+    {
+      "name": "email",
+      "description": "email",
+      "valueType": "s"
+    },
+    {
+      "name": "companyCode",
+      "description": "companyCode",
+      "valueType": "s"
+    }
+  ],
+  "role-templates": [
+    {
+      "name": "Employee",
+      "description": "generated",
+      "scope-references": [
+        "$XSAPPNAME.Employee"
+      ],
+      "attribute-references": []
+    },
+    {
+      "name": "DepartmentLead",
+      "description": "generated",
+      "scope-references": [
+        "$XSAPPNAME.DepartmentLead"
+      ],
+      "attribute-references": []
+    },
+    {
+      "name": "Admin",
+      "description": "generated",
+      "scope-references": [
+        "$XSAPPNAME.Admin"
+      ],
+      "attribute-references": [
+        "email",
+        "companyCode"
+      ]
+    },
+    {
+      "name": "userattributes",
+      "description": "generated",
+      "default-role-name": "Attributes of a User",
+      "scope-references": [],
+      "attribute-references": [
+        "email",
+        "companyCode"
+      ]
+    }
+  ],
+  "oauth2-configuration": {
+    "redirect-uris": [
+       "https://*.applicationstudio.cloud.sap/**"
+    ]
+  }
+}
